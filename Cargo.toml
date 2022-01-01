@@ -1,0 +1,39 @@
+[package]
+name = "play"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+const-tweaker = "0.3.1"
+rand = "*"
+bitvec = "*"
+byteorder = "*"
+[dependencies.bevy]
+version = "0.5"
+default-features = false
+# These are the remaining default features other than `bevy_audio` and `mp3`
+features = [
+  "bevy_dynamic_plugin",
+  "render",
+  "bevy_wgpu",
+  "bevy_winit",
+  "bevy_gilrs",
+  "bevy_gltf",
+  "png",
+  "hdr",
+  "x11"
+]
+
+[dependencies.bevy_kira_audio]
+version = "0.6"
+# `ogg` format support is enabled by default, disable if you don't want it
+default-features = false
+# enable the features you care about
+features = [
+  "wav",
+]
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+bevy_webgl2 = { version="0.5", optional=true }
+wasm-bindgen = "0.2.69"
+console_error_panic_hook = "0.1"
